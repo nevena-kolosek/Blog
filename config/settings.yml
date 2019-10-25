@@ -1,0 +1,15 @@
+default: &default
+  host: localhost
+  port: 3000
+  #username: neo4j
+  #password: root
+  user: <%= ENV['USER'] %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

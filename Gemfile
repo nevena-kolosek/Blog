@@ -38,12 +38,38 @@ gem 'config'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  gem "better_errors"
+  gem "binding_of_caller"
+
+  gem 'pry'
+  gem 'pry-byebug', '~>1.3.3' # need this version for pry-remote to work
+  gem 'pry-remote'
+  gem 'pry-rails'
+
+  gem 'awesome_print'
+end
+
+group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
 
   gem "database_cleaner"
   gem "rspec-rails"
+
+  gem 'rspec-activemodel-mocks'
+  gem 'rspec-collection_matchers'
+  gem 'rspec-mocks', '~> 3.2.1'
+
+  gem 'simplecov', :require => false
+  gem 'factory_girl_rails', "~> 4.0"
+  gem 'shoulda'
+  gem 'email_spec'
+
+  gem 'action_mailer_cache_delivery'
+  gem 'fivemat' #Beautiful test output
+
 end
 
 group :development do
