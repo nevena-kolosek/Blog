@@ -28,6 +28,9 @@
 
 <%= link_to 'New Story', new_story_path %>
 
+<%= link_to 'Profile', profile_path %>
+
+
 <% if current_user %>
 
 <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
