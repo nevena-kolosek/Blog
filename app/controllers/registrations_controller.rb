@@ -5,9 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
 	end
 
 	def new
-		User.admin
-	super
-
+		super
 	end
 
 	def create
