@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Slug:</strong>
+  <%= @user.slug %>
+</p>
+
+<p>
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
@@ -19,11 +24,6 @@
 <p>
   <strong>Bio:</strong>
   <%= @user.bio %>
-</p>
-
-<p>
-  <strong>Slug:</strong>
-  <%= @user.slug %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

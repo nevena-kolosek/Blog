@@ -5,12 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :stories
 
+  enum role: [ :admin, :editor, :author ]
+
   def self.admin
   	users = User.all
   	if users.count == 0
-  	 	admin = true
-  	else
-  	 	admin = false
- 	end	
+      puts 'Count je nula'
+      #dodati
+ 	  end	
   end
+
 end
