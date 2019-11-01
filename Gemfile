@@ -39,6 +39,7 @@ gem 'bootstrap-sass'
 gem 'pundit'
 gem 'carrierwave', '~> 2.0'
 gem 'draper'
+gem 'devise_invitable', '~> 2.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -53,6 +54,7 @@ group :development, :test do
   gem 'pry-rails'
 
   gem 'awesome_print'
+  gem "letter_opener"
 end
 
 group :test do

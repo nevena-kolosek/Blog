@@ -24,7 +24,7 @@
 
 <br>
 
-<h1>Users</h1>
+<h1>All users</h1>
 
 <table>
   <thead>
@@ -39,8 +39,8 @@
       <tr>
 
         <td><%= user.full_name %></td>
-        <td><%= link_to 'Show', profile_user_path(user) %></td>
         <td><%= link_to user.email %></td>
+        <td><%= link_to 'Show', profile_user_path(user) %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

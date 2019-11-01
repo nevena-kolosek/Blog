@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:show, :edit, :update, :destroy, :invite]
+  after_action  :set_url, only: [:invite]
 
   # GET /teams
   # GET /teams.json
@@ -11,6 +12,11 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
+    @users = User.all
+
+    @user = User.find(params[:id])
+    puts @user
+
   end
 
   # GET /teams/new
@@ -62,14 +68,29 @@ class TeamsController < ApplicationController
     end
   end
 
+  def invite
+    @user = User.find(params[:id])
+    puts @user
+    @user.invite!(params[:email])
+    redirect_to team_path(@team)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team
-      #@team = Team.find(params[:id])
+      @team = Team.find(params[:id])
+    end
+
+    def set_user
+      @user = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
       params.require(:team).permit(:name)
+    end
+
+    def set_url
+      #redirect_to team_path(@team)
     end
 end

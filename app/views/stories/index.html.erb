@@ -16,10 +16,15 @@
         <td><%= story.title %></td>
         <td><%= story.part %></td>
         <td><%= story.author %></td>
-        <% if current_user.author? || current_user.editor? %>
+        <% if current_user %>
+
           <td><%= link_to 'Show', story %></td>
           <td><%= link_to 'Edit', edit_story_path(story) %></td>
+
+          <% if current_user.admin? %>
           <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+
         <% end %>
       </tr>
     <% end %>

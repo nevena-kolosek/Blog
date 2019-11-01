@@ -1,9 +1,13 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :invitable, :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, :invitable
   has_many :stories
+
+    has_many :members
+    has_many :teams, through: :members
+
 
   mount_uploader :avatar, AvatarUploader
 
@@ -13,7 +17,7 @@ class User < ApplicationRecord
     split = user.full_name.split(" ")
     first_name = split[0]
     last_name = split[1]
-    x = first_name + "-" + laast_name.slice!(0, 1)
+    x = first_name + "-" + last_name.slice!(0, 1)
     user.update(slug: x)
   end
 
