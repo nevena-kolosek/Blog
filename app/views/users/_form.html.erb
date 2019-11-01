@@ -11,32 +11,77 @@
     </div>
   <% end %>
 
-  <div class="field">
+
     <%= form.label :avatar %>
-    <%= form.file_field :avatar, id: :user_avatar%>
-  </div>
+    <% if current_user.admin? %>
+      <% if @user.avatar? %>
+        <%= image_tag(@user.avatar_url.to_s) %>
+      <% else %>
+        <%= image_tag("avatar.png", size: "50x50", alt: "Image") %>
+        <%= puts 'Avatar' %>
+    <% end %>
+    <% else %>
+      <% if @user.avatar? %>
+        <%= image_tag(@user.avatar_url.to_s) %>
+        <%= form.file_field :avatar, id: :user_avatar %>
+      <% else %>
+        <%= image_tag("avatar.png", size: "50x50", alt: "Image") %>
+        <%= form.file_field :avatar, id: :user_avatar %>
+      <% end %>
+
+    <% end %>
+
 
   <div class="field">
     <%= form.label :full_name %>
-    <%= form.text_field :full_name, id: :user_full_name %>
+    <% if current_user.admin? %>
+      <%= form.text_field :full_name, id: :user_full_name, :readonly => true %>
+    <% else %>
+      <%= form.text_field :full_name, id: :user_full_name %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :email %>
-    <%= form.text_field :email, id: :user_email %>
+    <% if current_user.admin? %>
+      <%= form.text_field :email, id: :user_email, :readonly => true %>
+    <% else %>
+      <%= form.text_field :email, id: :user_email %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :password %>
-    <%= link_to 'Change password' %>
+    <% if current_user.admin? %>
+      <%= @user.encrypted_password %>
+    <% else %>
+      <%= link_to 'Change password' %>
+    <% end %>
   </div>
 
   <div class="field">
+    <%= form.label :role %>
+    <% if current_user.admin? %>
+      <%= form.text_field :role, id: :user_role %>
+    <% else %>
+      <%= form.text_field :role, id: :user_role, :readonly => true  %>
+    <% end %>
+  </div>
+
+
+  <div class="field">
     <%= form.label :bio %>
-    <%= form.text_area :bio, id: :user_bio %>
+    <% if current_user.admin? %>
+      <%= form.text_area :bio, id: :user_bio, :readonly => true  %>
+    <% else %>
+      <%= form.text_area :bio, id: :user_bio %>
+    <% end %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.button 'Save',
+      type: :submit,
+      data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving..." } 
+    %>
   </div>
 <% end %>

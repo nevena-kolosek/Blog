@@ -1,9 +1,33 @@
-<h1>Profile for @user.full_name</h1>
+<h1>Profile for <%= @user.full_name %></h1>
+
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-6">
 
 <p>
   <strong>Image:</strong>
-  <%= image_tag(@user.avatar_url.to_s) %>
+
+  <div class="hovereffect">
+    <div class="img-responsive">
+
+      <% if @user.avatar? %>
+      <%= image_tag(@user.avatar_url.to_s) %>
+      <% else %>
+      <%= image_tag("avatar.png", size: "50x50")%>
+      <% end %>
+    </div>
+    <div class="overlay">
+      <p><%= file_field :avatar, id: :user_avatar, :title => "Upload New" %></p> 
+    </div>
+  </div>
 </p>
+
+</div>
+
+<div class="col-md-6">
+
 
 <p>
   <strong>Full name:</strong>
@@ -25,11 +49,16 @@
   <%= @user.encrypted_password %>
 </p>
 
-
 <p>
   <strong>Bio:</strong>
   <%= @user.bio %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', stories_path %>
+<%= link_to 'Back', teams_path %>
+
+</div>
+
+
+</div>
+</div>

@@ -6,6 +6,7 @@ class StoriesController < ApplicationController
   def index
     @stories = Story.all
     authorize @stories
+    #@user = User.find(params[:id])
   end
 
   # GET /stories/1

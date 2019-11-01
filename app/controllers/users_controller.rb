@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :profile]
 
   # GET /users
   # GET /users.json
@@ -10,40 +10,21 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def profile
-    @user = current_user
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
+    #treba da saljem usera tu ali ako je admin ulogovan onda da se vidi koji bas user treba a ako nije onda current usera
+    #i to sve da pozovem preko dekoratora
+    #@user = current_user
   end
 
   # GET /users/1/edit
   def edit
   end
 
-  # POST /users
-  # POST /users.json
-  def create
-    @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    #User.generate_slug(@user) 
     respond_to do |format|
       if @user.update(user_params)
+        User.generate_slug(@user) 
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else

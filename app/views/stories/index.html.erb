@@ -15,10 +15,12 @@
       <tr>
         <td><%= story.title %></td>
         <td><%= story.part %></td>
-        <td><%= story.author_id %></td>
-        <td><%= link_to 'Show', story %></td>
-        <td><%= link_to 'Edit', edit_story_path(story) %></td>
-        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= story.author %></td>
+        <% if current_user.author? || current_user.editor? %>
+          <td><%= link_to 'Show', story %></td>
+          <td><%= link_to 'Edit', edit_story_path(story) %></td>
+          <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -26,14 +28,25 @@
 
 <br>
 
-<%= link_to 'New Story', new_story_path %>
-
-<%= link_to 'Profile', profile_path %>
-
-
 <% if current_user %>
 
-<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+  <% if current_user.admin? %>
+
+    <%= link_to 'Team', teams_path %>
+
+  <% else %>
+
+    <%= link_to 'New Story', new_story_path %>
+
+    <%= link_to 'Your profile', profile_user_path(current_user) %>
+
+    <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+
+  <% end %>
+
+<% else %>
+
+<%= link_to 'Back', root_path %>
 
 <% end %>
 

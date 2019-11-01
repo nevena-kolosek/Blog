@@ -1,6 +1,6 @@
 <p>
   <strong>Image:</strong>
-  <%= image_tag(@user.avatar.to_s) %>
+  <%= image_tag(@user.avatar.to_s) if @user.avatar? %>
 </p>
 
 <p>
@@ -24,4 +24,4 @@
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', teams_path %>

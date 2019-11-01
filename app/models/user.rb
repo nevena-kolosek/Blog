@@ -7,36 +7,26 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-  enum role: [ :admin, :editor, :author ]
-
-  def self.a
-  	users = User.all
-
-  	if users.count == 3
-      @cutrrent_user.role
-      puts 'kaunt je nula, da li je postao admin?'
-      #puts @cutrrent_user.admin?
-      #dodati
-    else
-      puts 'nije'
- 	  end	
-  end
-
+  enum role: [ :author, :admin, :editor ]
 
   def self.generate_slug(user)
-      split = user.full_name.split(" ")
-      fname = split[0]
-      lname = split[1]
-      x = fname + "-" + lname.slice!(0, 1)
-      puts x
-      user.update(slug: x)
-    end
+    split = user.full_name.split(" ")
+    first_name = split[0]
+    last_name = split[1]
+    x = first_name + "-" + laast_name.slice!(0, 1)
+    user.update(slug: x)
+  end
 
-  after_update :g
+  after_create :set_admin
 
   private
 
-    def g
+    def set_admin
+      users = User.all
+      if users.count == 1
+        self.admin!
+        user.update
+      end
     end
 
 end
