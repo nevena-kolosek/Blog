@@ -1,0 +1,9 @@
+  <%= form_for @tag , :url => create_tag_path(@story), html:{method:'post'} do |f| %>
+    <p>Name:
+      <%= f.text_area :name %>
+    </p>
+    
+    <p>
+      <%= f.submit %>
+    </p>
+    <% end %>

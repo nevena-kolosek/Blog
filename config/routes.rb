@@ -5,22 +5,24 @@ Rails.application.routes.draw do
       get 'invite/:id', :action => 'invite', :as => 'invite'
     end
   end
-  #root to: 'home#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :stories
-  
-  #ovo dodaje rute koje odgovaraju akcijama
 
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :stories 
+  resources :tags do
+    member do
+      get 'new/:id', :action => 'new', :as => 'new'
+      post 'create/:id', :action => 'create', :as => 'create'
+
+    end
+  end
 
   devise_for :users, :controllers => {registration: "registrations", sessions: "sessions", invitations: 'invitations'}
- 
+   #root to: 'home#index'
   
   devise_scope :user do
     root to: 'users#index'
     get 'profile' => "users#profile"
   end
-  #root to: 'home#index'
-
 
    resources :users do
     member do

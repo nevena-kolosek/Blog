@@ -5,6 +5,7 @@ class StoriesController < ApplicationController
   # GET /stories.json
   def index
     @stories = Story.all
+    @tags = Tag.all
     authorize @stories
     #@user = User.find(params[:id])
   end
@@ -12,7 +13,7 @@ class StoriesController < ApplicationController
   # GET /stories/1
   # GET /stories/1.json
   def show
-    
+    @story = Story.find(params[:id])
   end
 
   # GET /stories/new 
@@ -23,6 +24,7 @@ class StoriesController < ApplicationController
 
   # GET /stories/1/edit
   def edit
+    @story = Story.find(params[:id])
   end
 
   # POST /stories

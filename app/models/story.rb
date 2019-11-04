@@ -5,4 +5,5 @@ class Story < ApplicationRecord
   def author
   	user = User.find(author_id)
   end
+
 end

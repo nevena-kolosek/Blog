@@ -11,7 +11,12 @@
 
 <p>
   <strong>Author:</strong>
-  <%= @story.author.full_name %>
+  <%= @story.author %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= @story.tags %>
 </p>
 
 <%= link_to 'Edit', edit_story_path(@story) %> |
