@@ -1,5 +1,10 @@
 <h1>Stories</h1>
 
+<%= form_tag stories_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+
 <table>
   <thead>
     <tr>
@@ -42,6 +47,9 @@
     <% end %>
   </tbody>
 </table>
+
+  </p>
+<% end %>
 
 <br>
 

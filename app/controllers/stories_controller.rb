@@ -4,9 +4,9 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.all
+    @stories = Story.search(params[:search])
     @tags = Tag.all
-    authorize @stories
+    #authorize @stories
     #@user = User.find(params[:id])
   end
 
