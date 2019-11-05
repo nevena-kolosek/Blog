@@ -68,7 +68,6 @@ class TeamsController < ApplicationController
 
   def invite
     @user = User.find(params[:id])
-    puts @user
     @user.invite!(params[:email])
     redirect_to team_path(@team)
   end
@@ -86,9 +85,5 @@ class TeamsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
       params.require(:team).permit(:name)
-    end
-
-    def set_url
-      #redirect_to team_path(@team)
     end
 end

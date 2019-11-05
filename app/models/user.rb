@@ -5,9 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :stories
 
-    has_many :members
-    has_many :teams, through: :members
-
+  has_many :members
+  has_many :teams, through: :members
 
   mount_uploader :avatar, AvatarUploader
 

@@ -10,8 +10,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def profile
-    #treba da saljem usera tu ali ako je admin ulogovan onda da se vidi koji bas user treba a ako nije onda current usera
-    #i to sve da pozovem preko dekoratora
   end
 
   # GET /users/1/edit

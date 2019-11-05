@@ -11,7 +11,6 @@
     </div>
   <% end %>
 
-
     <%= form.label :avatar %>
     <% if current_user.admin? %>
       <% if @user.avatar? %>
@@ -28,9 +27,7 @@
         <%= image_tag("avatar.png", size: "50x50", alt: "Image") %>
         <%= form.file_field :avatar, id: :user_avatar %>
       <% end %>
-
     <% end %>
-
 
   <div class="field">
     <%= form.label :full_name %>

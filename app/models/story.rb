@@ -8,10 +8,8 @@ class Story < ApplicationRecord
 
 	def self.search(search)
 	  if search
-	  	puts search
 	    Story.where("title LIKE ?", "%#{search}%")
 	  else
-	  	puts 'Sve'
 	    Story.all
 	  end
 	end

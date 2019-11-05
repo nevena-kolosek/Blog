@@ -5,49 +5,48 @@
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :name => nil %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Part</th>
-      <th>Author</th>
-      <th>Tags</th>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Part</th>
+          <th>Author</th>
+          <th colspan="2">Tags</th>
 
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+          <th colspan="4"></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @stories.each do |story| %>
-      <tr>
+      <tbody>
+        <% @stories.each do |story| %>
+          <tr>
 
-        <td><%= story.title %></td>
-        <td><%= story.part %></td>
-        <td><%= story.author.full_name %></td>
-  
-        <% Tag.count? %>
+            <td><%= story.title %></td>
+            <td><%= story.part %></td>
+            <td><%= story.author.full_name %></td>
+      
+            <% Tag.count? %>
 
-          <% story.tags.each do |t| %>
-              <td><%= t.name %></td>
-          <% end %>
+              <% story.tags.each do |t| %>
+                  <td><%= t.name %></td>
+              <% end %>
 
-        <% if current_user %>
+            <% if current_user %>
 
-          <td><%= link_to 'Add tags', new_tag_path(story) %>
-          </td>
-          <td><%= link_to 'Show', story %></td>
-          <td><%= link_to 'Edit', edit_story_path(story) %></td>
+              <td><%= link_to 'Add tags', new_tag_path(story) %></td>
+              <td><%= link_to 'Show', story %></td>
+              <td><%= link_to 'Edit', edit_story_path(story) %></td>
 
-          <% if current_user.admin? %>
-          <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% if current_user.admin? %>
+                <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
 
-          <% end %>
+            <% end %>
+          </tr>
+         
         <% end %>
-      </tr>
-     
-    <% end %>
-  </tbody>
-</table>
+      </tbody>
+    </table>
 
   </p>
 <% end %>
@@ -55,28 +54,14 @@
 <br>
 
 <% if current_user %>
+  <%= link_to 'Team', teams_path %>
+  <%= link_to 'New Story', new_story_path %>
+  <%= link_to 'Your profile', profile_user_path(current_user) %>
+  <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
 
-
-    <%= link_to 'Team', teams_path %>
-
-
-    <%= link_to 'New Story', new_story_path %>
-
-
-    <%= link_to 'Your profile', profile_user_path(current_user) %>
-
-    <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-
-
-
-    <%= link_to 'Create site', new_site_path %>
-
-    <%= link_to 'View sites', sites_path %>
-
-
+  <%= link_to 'Create site', new_site_path %>
+  <%= link_to 'View sites', sites_path %>
 <% else %>
-
-<%= link_to 'Back', root_path %>
-
+  <%= link_to 'Back', root_path %>
 <% end %>
 

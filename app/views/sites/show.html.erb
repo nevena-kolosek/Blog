@@ -10,5 +10,38 @@
   <%= @site.theme %>
 </p>
 
-<%= link_to 'Edit' %> 
-<%= link_to 'Back', stories_path %>
+<%= link_to 'Edit', edit_site_path(@site) %> 
+<%= link_to 'Back', sites_path %>
+
+
+<h2>Stories</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Part</th>
+      <th>Author</th>
+      <th colspan="2">Tags</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stories.each do |story| %>
+      <tr>
+
+        <td><%= story.title %></td>
+        <td><%= story.part %></td>
+        <td><%= story.author.full_name %></td>
+  
+          <% story.tags.each do |t| %>
+              <td><%= t.name %></td>
+          <% end %>
+        <td><%= link_to 'View story', story %></td>
+
+      </tr>
+     
+    <% end %>
+  </tbody>
+</table>
