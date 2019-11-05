@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   def profile
     #treba da saljem usera tu ali ako je admin ulogovan onda da se vidi koji bas user treba a ako nije onda current usera
     #i to sve da pozovem preko dekoratora
-    #@user = current_user
   end
 
   # GET /users/1/edit

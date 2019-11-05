@@ -40,6 +40,7 @@
 
           <% if current_user.admin? %>
           <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
           <% end %>
         <% end %>
       </tr>
@@ -65,6 +66,12 @@
     <%= link_to 'Your profile', profile_user_path(current_user) %>
 
     <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+
+
+
+    <%= link_to 'Create site', new_site_path %>
+
+    <%= link_to 'View sites', sites_path %>
 
 
 <% else %>

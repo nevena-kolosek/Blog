@@ -13,9 +13,7 @@ class TeamsController < ApplicationController
   # GET /teams/1.json
   def show
     @users = User.all
-
     @user = User.find(params[:id])
-    puts @user
 
   end
 

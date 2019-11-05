@@ -1,0 +1,28 @@
+<h1>All sites</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Theme</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sites.each do |s| %>
+      <tr>
+
+        <td><%= s.name %></td>
+        <td><%= s.theme %></td>
+
+        <td><%= link_to 'View site', site_path(s) %></td>
+        <td><%= link_to 'General settings', site_settings(s) %></td>
+
+      </tr>
+     
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', stories_path %>

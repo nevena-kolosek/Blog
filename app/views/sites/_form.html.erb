@@ -1,0 +1,16 @@
+<%= form_with(model: site, local: true) do |form| %>
+  
+  <div class="field">
+   <p>The name of your site: </p>
+    <%= form.text_field :name, id: :site_name %>
+  </div>
+
+  <div class="field">
+    <p>Used in your theme, meta data and search results: </p>
+    <%= form.text_area :theme, id: :site_theme %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

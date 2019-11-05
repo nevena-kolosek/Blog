@@ -7,7 +7,6 @@ class StoriesController < ApplicationController
     @stories = Story.search(params[:search])
     @tags = Tag.all
     #authorize @stories
-    #@user = User.find(params[:id])
   end
 
   # GET /stories/1
